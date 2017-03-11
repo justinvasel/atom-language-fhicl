@@ -1,6 +1,6 @@
 {
   "name": "language-fhicl",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Syntax highlighting for Fermilab Hierarchical Configuration Language (FHiCL)",
   "engines": {
     "atom": "*"
