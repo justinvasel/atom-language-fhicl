@@ -1,0 +1,80 @@
+'.source.fhicl':
+  'prolog':
+    'prefix': 'BEGIN-END PROLOG'
+    'body': 'BEGIN_PROLOG\n\nstandard_${1:job name}:\n{\n\tmodule_type:\t"${2:module base name}"\n\n}\n\nEND_PROLOG'
+
+  'job':
+    'prefix': 'FCL job'
+    'body': '''
+#include "services.fcl"
+#include "${1:Module}.fcl"
+
+process_name: ${2:Module type}
+
+services:
+{
+  # Uncomment the services you'd like to include
+  # MemoryTracker:         {}
+  # message:               @local::standard_out
+  # RandomNumberGenerator: {}
+  scheduler:             { wantTracer: false wantSummary: true }
+  # TFileService:          { fileName: "myjob_hist.root" }
+  # TimeTracker:           {}
+  @table::standard_services
+}
+
+source:
+{
+  module_type: RootInput
+  maxEvents:  -1
+}
+
+outputs:
+{
+  out1:
+  {
+   module_type: RootOutput
+   fileName:    "myjob_out.root" # default file name, can override from commandline with -o or --output
+   fastCloning: false
+  }
+}
+
+# Define and configure some modules to do work on each event.
+# First modules are defined; they are scheduled later.
+# Modules are grouped by type.
+physics:
+{
+  filters:
+  {
+    filter1: @local::standard_afilter
+  }
+  
+  producers:
+  {
+    producer1: @local::standard_aproducer
+  }
+  
+  analyzers:
+  {
+    analyzer1: @local::standard_analyzer
+  }
+
+
+  # Define the path for producer and filter modules, order matters.
+  reco: [ filter1, producer1 ]
+  
+  # Define the path for the analyzer modules, order does not matter.
+  ana: [ analyzer1 ]
+
+  # Define the output stream, there could be more than one if using filters 
+  stream1:  [ out1 ]
+
+  # trigger_paths is a keyword and contains the paths that modify the art::Event, 
+  # ie. filters and producers
+  trigger_paths: [ reco ] 
+
+  # end_paths is a keyword and contains the paths that do not modify the art::Event, 
+  # ie. analyzers and output streams.  these all run simultaneously
+  end_paths:     [ ana, stream1 ]
+}
+'''

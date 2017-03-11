@@ -1,0 +1,15 @@
+'.source.fhicl':
+  'editor':
+    # 'foldEndPattern': '\\*\\*/|^\\s*\\}'
+    'commentStart': '# '
+'.source.fhicl.latex':
+  'editor':
+    # 'increaseIndentPattern': '^\\s*\\\\begin\\{(?!document).*\\}'
+    # 'decreaseIndentPattern': '^\\s*\\\\end(\\{(?!document).*\\})?$'
+    'completions': [
+      'BEGIN_PROLOG'
+      'END_PROLOG'
+      'trigger_paths'
+      'end_paths'
+      'TFileService'
+    ]
