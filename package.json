@@ -1,0 +1,17 @@
+{
+  "name": "language-fhicl",
+  "version": "0.0.0",
+  "description": "Syntax highlighting for Fermilab Hierarchical Configuration Language (FHiCL)",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinvasel/atom-language-fhicl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justinvasel/atom-language-fhicl/issues"
+  },
+  "license": "MIT"
+}
