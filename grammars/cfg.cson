@@ -1,0 +1,16 @@
+'scopeName': 'source.cfg'
+'name': 'JobSub Configuration'
+'fileTypes': ['cfg']
+
+'patterns': [
+  {
+    'include': '#basic'
+  }
+]
+
+'repository':
+  'basic':
+    'patterns': [
+      'match': '(-{2}\\w\\S*=|-{2}\\w*|\\s-\\w)'
+      'name': 'constant.numeric.cfg'
+    ]
